@@ -34,12 +34,18 @@ class HelpController extends Controller
 
     public function tickets()
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('info', 'Please login to manage your support tickets.');
+        }
         $tickets = SupportTicket::where('user_id', Auth::id())->latest()->get();
         return view('help.tickets', compact('tickets'));
     }
 
     public function createTicket()
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('info', 'Please login to create a support ticket.');
+        }
         return view('help.create-ticket');
     }
 

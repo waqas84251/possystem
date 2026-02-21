@@ -19,6 +19,10 @@ class SettingsController extends Controller
 
     public function update(Request $request)
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'You must be logged in to update settings.');
+        }
+
         $validated = $request->validate([
             'settings' => 'required|array',
             'settings.*' => 'nullable'

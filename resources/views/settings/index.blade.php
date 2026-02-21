@@ -95,10 +95,17 @@
                         </div>
                         @endforeach
 
+                        @auth
                         <div class="text-end">
                             <button type="reset" class="btn btn-secondary me-2">Reset Changes</button>
                             <button type="submit" class="btn btn-primary">Save Settings</button>
                         </div>
+                        @endauth
+                        @guest
+                        <div class="alert alert-info mb-0">
+                            <i class="fas fa-info-circle me-1"></i> You are viewing public settings. Please log in to modify system configuration.
+                        </div>
+                        @endguest
                     </div>
                 </div>
             </div>
